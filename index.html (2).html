@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University of Lynchburg DMSc Student Writing & Style Manual</title>
+    
+    <!-- Open Graph / SEO Metadata for GitHub Pages -->
+    <meta name="description" content="Official DMSc Student Writing & Style Manual for the University of Lynchburg Doctor of Medical Science Program, based on AMA 11th Edition.">
+    <meta property="og:title" content="Lynchburg DMSc Student Writing & Style Manual">
+    <meta property="og:description" content="Comprehensive AMA 11th Edition style guide, manuscript preparation rules, AI disclosure templates, and citation standards for DMSc doctoral students.">
+    <meta property="og:type" content="website">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        lynchburg: {
+                            50: '#f0f5fa',
+                            100: '#e1ebd5',
+                            600: '#0055a5',
+                            700: '#004080',
+                            800: '#003366',
+                            900: '#002244',
+                            gold: '#d4af37',
+                            goldhover: '#b59326',
+                            goldlight: '#fdfbf0'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom accessibility focus outline */
+        *:focus-visible {
+            outline: 3px solid #d4af37 !important;
+            outline-offset: 2px !important;
+        }
+        /* Active sidebar navigation link */
+        .toc-active {
+            border-left-color: #003366 !important;
+            background-color: #f0f5fa !important;
+            color: #003366 !important;
+            font-weight: 700 !important;
+        }
+        /* Mobile content container constraint */
+        .gh-content-wrapper {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        /* Print styling for PDF exporting */
+        @media print {
+            .no-print { display: none !important; }
+            .print-full { width: 100% !important; margin: 0 !important; padding: 0 !important; }
+            body { background: white !important; color: black !important; }
+            .manual-section { border: 1px solid #ccc !important; box-shadow: none !important; margin-bottom: 2rem !important; }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased gh-content-wrapper leading-relaxed flex flex-col min-h-screen">
+
+    <header class="bg-lynchburg-800 text-white sticky top-0 z-50 shadow-md border-b-4 border-lynchburg-gold no-print">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                <!-- Branding & University Title -->
+                <div class="flex items-center space-x-3">
+                    <button id="mobile-menu-btn" class="md:hidden text-white hover:text-lynchburg-gold focus:outline-none p-2 rounded" aria-label="Toggle navigation menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                    <div class="bg-white/10 p-2.5 rounded-xl border border-white/20">
+                        <i class="fa-solid fa-graduation-cap text-lynchburg-gold text-2xl"></i>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs uppercase tracking-widest text-lynchburg-gold font-bold block">University of Lynchburg</span>
+                            <span class="bg-lynchburg-900/80 text-white border border-slate-600 text-3xs font-semibold px-2 py-0.5 rounded-full flex items-center gap-1">
+                                <i class="fa-brands fa-github text-xs"></i> GitHub Pages
+                            </span>
+                        </div>
+                        <h1 class="text-lg sm:text-xl font-bold leading-tight">DMSc Student Writing & Style Manual</h1>
+                    </div>
+                </div>
+
+                <!-- Instant Live Search Engine Input -->
+                <div class="relative w-full md:w-80">
+                    <label for="manual-search" class="sr-only">Search manual guidelines</label>
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </div>
+                    <input type="search" id="manual-search" placeholder="Search guidelines (e.g. Oxford comma, AI)..." 
+                           class="w-full pl-9 pr-8 py-2 bg-slate-900/60 text-white placeholder-slate-300 rounded-lg text-sm border border-slate-600 focus:bg-slate-900 focus:border-lynchburg-gold focus:outline-none transition"
+                           onkeyup="filterManualContent()">
+                    <button id="clear-search" onclick="clearSearch()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-white" aria-label="Clear search">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+        <div class="flex flex-col md:flex-row gap-8">
+            
+            <!-- Sidebar Navigation -->
+            <aside id="sidebar-nav" class="hidden md:block w-full md:w-72 flex-shrink-0 no-print">
+                <div class="sticky top-20 bg-white rounded-xl shadow-sm border border-slate-200 p-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+                    <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                        <h2 class="text-xs font-bold uppercase tracking-wider text-slate-500">Table of Contents</h2>
+                        <span class="text-xs bg-lynchburg-50 text-lynchburg-800 px-2 py-0.5 rounded font-semibold">AMA 11th Ed.</span>
+                    </div>
+                    <nav aria-label="Style Manual Sections" class="space-y-1 text-xs">
+                        <a href="#section-1" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">1. Program Introduction</a>
+                        <a href="#section-2" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">2. Manuscript Preparation</a>
+                        <a href="#section-3" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">3. Academic Expectations</a>
+                        <a href="#section-4" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">4. Grammar & Punctuation</a>
+                        <a href="#section-5" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">5. Capitalization & Italics</a>
+                        <a href="#section-6" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">6. Preferred Word Choice</a>
+                        <a href="#section-7" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">7. Abbreviations & Acronyms</a>
+                        <a href="#section-8" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">8. Numbers & Units</a>
+                        <a href="#section-9" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">9. References & Citations</a>
+                        <a href="#section-10" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">10. Ethical & Legal Standards</a>
+                        <a href="#section-11" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">11. Inclusive Language</a>
+                        <a href="#section-12" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">12. Citation Examples</a>
+                        <a href="#section-13" class="toc-link block px-3 py-2 rounded-lg border-l-4 border-transparent hover:bg-slate-50 text-slate-700 transition">13. Pre-Submission Checklist</a>
+                    </nav>
+
+                    <!-- Quick Tools Callout -->
+                    <div class="mt-6 pt-4 border-t border-slate-100 bg-lynchburg-50 p-3 rounded-lg">
+                        <h3 class="text-xs font-semibold text-lynchburg-800 uppercase tracking-wide mb-2"><i class="fa-solid fa-bolt mr-1 text-lynchburg-gold"></i> Quick Actions</h3>
+                        <button onclick="toggleQuickCheatSheet()" class="w-full text-left text-xs bg-white text-slate-700 hover:text-lynchburg-800 font-medium px-3 py-2 rounded border border-slate-200 shadow-sm flex items-center justify-between mb-2 transition">
+                            <span>AMA Reference Rules</span>
+                            <i class="fa-solid fa-chevron-right text-slate-400 text-2xs"></i>
+                        </button>
+                        <button onclick="window.print()" class="w-full text-left text-xs bg-white text-slate-700 hover:text-lynchburg-800 font-medium px-3 py-2 rounded border border-slate-200 shadow-sm flex items-center justify-between transition">
+                            <span>Print / Save as PDF</span>
+                            <i class="fa-solid fa-print text-slate-400 text-2xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+
+            <main class="flex-1 space-y-8 min-w-0 print-full">
+                
+                <!-- Search Result Summary Bar -->
+                <div id="search-results-summary" class="hidden bg-lynchburg-goldlight border border-lynchburg-gold text-lynchburg-900 px-4 py-3 rounded-xl flex items-center justify-between shadow-sm">
+                    <div class="flex items-center space-x-2">
+                        <i class="fa-solid fa-filter text-lynchburg-gold"></i>
+                        <span id="search-count-text" class="font-medium text-sm">Searching manual...</span>
+                    </div>
+                    <button onclick="clearSearch()" class="text-xs bg-white hover:bg-slate-100 text-slate-700 font-bold px-3 py-1 rounded shadow-sm border border-slate-300 transition">
+                        Show All Sections
+                    </button>
+                </div>
+
+                <!-- SECTION 1: Introduction -->
+                <section id="section-1" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">1</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Program Introduction</h2>
+                            <p class="text-xs text-slate-500">Overview, Program Standards, & AMA 11th Edition Foundation</p>
+                        </div>
+                    </div>
+                    
+                    <div class="prose max-w-none text-slate-700 text-sm space-y-4">
+                        <p class="text-base leading-relaxed text-slate-800 font-normal">
+                            This manual serves as the official student guide for written assignments, doctoral manuscripts, and research papers within the <strong>University of Lynchburg Doctor of Medical Science (DMSc) Program</strong>. It outlines mandatory program layout standards, American Medical Association Manual of Style 11th edition (AMA) guidelines, academic writing expectations, and common grammatical conventions.
+                        </p>
+                        
+                        <div class="bg-slate-50 border-l-4 border-lynchburg-800 p-4 rounded-r-lg my-4">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1 flex items-center">
+                                <i class="fa-solid fa-circle-info text-lynchburg-gold mr-2"></i> Standard Hierarchy Notice
+                            </h3>
+                            <p class="text-xs text-slate-600">
+                                This guide is aligned directly with the <em>AMA Manual of Style (11th edition)</em>. Where the official AMA Manual is silent regarding specific academic coursework formatting (e.g., title pages, course headers, or grading margins), the DMSc program standards detailed herein take precedence.
+                            </p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 mt-4">
+                            <div class="border border-slate-200 rounded-lg p-4 bg-white hover:border-lynchburg-800 transition">
+                                <h4 class="font-bold text-lynchburg-800 text-sm mb-1"><i class="fa-solid fa-book-bookmark text-lynchburg-gold mr-2"></i>Official AMA Manual Updates</h4>
+                                <p class="text-xs text-slate-600 mb-2">Stay up to date with ongoing stylistic decisions and errata directly from Oxford University Press.</p>
+                                <a href="https://academic.oup.com/amamanualofstyle/pages/about/updates-to-the-manual" target="_blank" rel="noopener noreferrer" class="inline-flex items-center text-xs font-semibold text-lynchburg-800 hover:text-lynchburg-gold transition">
+                                    Visit AMA Style Updates <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-3xs"></i>
+                                </a>
+                            </div>
+                            <div class="border border-slate-200 rounded-lg p-4 bg-white hover:border-lynchburg-800 transition">
+                                <h4 class="font-bold text-lynchburg-800 text-sm mb-1"><i class="fa-solid fa-universal-access text-blue-600 mr-2"></i>WCAG 2.2 AA Accessibility Compliance</h4>
+                                <p class="text-xs text-slate-600">Built specifically to ensure full compatibility with screen readers, keyboard navigation, and responsive mobile devices.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 2: Manuscript Preparation -->
+                <section id="section-2" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">2</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">DMSc Manuscript Preparation (AMA Ch. 2.0)</h2>
+                            <p class="text-xs text-slate-500">Formatting Specs, Order of Components, & Mandatory AI Disclosures</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Quick Specs Grid -->
+                        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+                                <span class="text-xs text-slate-500 font-medium block">Standard Font</span>
+                                <span class="text-sm font-bold text-lynchburg-800">Arial 12pt</span>
+                                <span class="text-3xs text-slate-400 block">(or Times New Roman 12pt)</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+                                <span class="text-xs text-slate-500 font-medium block">Margins</span>
+                                <span class="text-sm font-bold text-lynchburg-800">1.0 Inch</span>
+                                <span class="text-3xs text-slate-400 block">All sides (ragged right)</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+                                <span class="text-xs text-slate-500 font-medium block">Spacing</span>
+                                <span class="text-sm font-bold text-lynchburg-800">Double-Spaced</span>
+                                <span class="text-3xs text-slate-400 block">0.5 in paragraph indent</span>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 text-center">
+                                <span class="text-xs text-slate-500 font-medium block">Pagination</span>
+                                <span class="text-sm font-bold text-lynchburg-800">Upper Right</span>
+                                <span class="text-3xs text-slate-400 block">Starts on Title Page</span>
+                            </div>
+                        </div>
+
+                        <!-- Submission Order -->
+                        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50/50">
+                            <h3 class="text-sm font-bold text-lynchburg-800 mb-3">Required Sequence of Submission Elements</h3>
+                            <ol class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 text-xs font-medium text-slate-700">
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">1</span> Title Page</li>
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">2</span> Abstract (if required)</li>
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">3</span> Body Text</li>
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">4</span> Acknowledgment & AI Disclosure</li>
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">5</span> Reference List</li>
+                                <li class="bg-white p-2.5 rounded-lg border border-slate-200 flex items-center shadow-2xs"><span class="w-5 h-5 bg-lynchburg-800 text-white rounded-full inline-flex items-center justify-center mr-2 text-2xs font-bold">6</span> Tables / Figures / Appendices</li>
+                            </ol>
+                        </div>
+
+                        <!-- AI Disclosure Templates Box -->
+                        <div class="bg-gradient-to-r from-lynchburg-50 to-blue-50 border border-lynchburg-700/30 rounded-xl p-5 shadow-xs">
+                            <div class="flex items-center justify-between mb-2">
+                                <h3 class="text-sm font-bold text-lynchburg-800 flex items-center">
+                                    <i class="fa-solid fa-robot mr-2 text-lynchburg-gold"></i> Mandatory AI Disclosure Statement Requirement
+                                </h3>
+                                <span class="text-2xs bg-lynchburg-800 text-white px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Required</span>
+                            </div>
+                            <p class="text-xs text-slate-600 mb-4">
+                                Every DMSc assignment must include an explicit Artificial Intelligence disclosure in the Acknowledgment section. Select and copy the appropriate template below:
+                            </p>
+
+                            <!-- Copyable Box 1 -->
+                            <div class="mb-3">
+                                <div class="flex items-center justify-between bg-slate-800 text-slate-300 px-3 py-1.5 rounded-t-lg text-xs font-mono">
+                                    <span>Template A: AI Tools Utilized</span>
+                                    <button onclick="copyToClipboard('ai-template-used', this)" class="hover:text-lynchburg-gold flex items-center gap-1 transition text-2xs">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy Text</span>
+                                    </button>
+                                </div>
+                                <pre id="ai-template-used" class="bg-slate-900 text-slate-100 p-3 rounded-b-lg text-xs font-mono overflow-x-auto whitespace-pre-wrap border-t border-slate-800">Google Docs spelling assistant was used to identify editing errors. OpenAI ChatGPT (Model GPT-4) was queried on October 12, 2026, to assist in structuring topic outlines. The author reviewed, revised, and takes full responsibility for all final manuscript content.</pre>
+                            </div>
+
+                            <!-- Copyable Box 2 -->
+                            <div>
+                                <div class="flex items-center justify-between bg-slate-800 text-slate-300 px-3 py-1.5 rounded-t-lg text-xs font-mono">
+                                    <span>Template B: No AI Tools Utilized</span>
+                                    <button onclick="copyToClipboard('ai-template-none', this)" class="hover:text-lynchburg-gold flex items-center gap-1 transition text-2xs">
+                                        <i class="fa-regular fa-copy"></i> <span>Copy Text</span>
+                                    </button>
+                                </div>
+                                <pre id="ai-template-none" class="bg-slate-900 text-slate-100 p-3 rounded-b-lg text-xs font-mono overflow-x-auto whitespace-pre-wrap border-t border-slate-800">All research, drafting, and editing for this submission were conducted entirely by the author without the use of artificial intelligence software or generative language models.</pre>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 3: Academic Expectations -->
+                <section id="section-3" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">3</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Academic Writing Expectations</h2>
+                            <p class="text-xs text-slate-500">Clinical Tone, Diction, Tense Standards, & Paraphrasing Rules</p>
+                        </div>
+                    </div>
+
+                    <p class="text-sm text-slate-700 mb-4">
+                        Doctoral writing demands concise, objective, and evidence-backed communication. Clinical papers should prioritize precision over decorative language.
+                    </p>
+
+                    <!-- Pillars Table -->
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-left border-collapse border border-slate-200 rounded-lg text-xs" aria-label="Core Pillars of Scientific Writing">
+                            <thead>
+                                <tr class="bg-lynchburg-800 text-white uppercase tracking-wider">
+                                    <th scope="col" class="p-3 border border-slate-300">Pillar</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Definition</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Scientific Expectation</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Diction</th>
+                                    <td class="p-3 border border-slate-200">Specific word choice and domain vocabulary.</td>
+                                    <td class="p-3 border border-slate-200 font-medium">Use precise medical terminology; avoid slang, idioms, and casual expressions.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Syntax</th>
+                                    <td class="p-3 border border-slate-200">Sentence structure, length, and rhythm.</td>
+                                    <td class="p-3 border border-slate-200 font-medium">Keep sentences direct and concise (aiming for 12–18 words per sentence).</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Tone</th>
+                                    <td class="p-3 border border-slate-200">The objective stance toward subject matter.</td>
+                                    <td class="p-3 border border-slate-200 font-medium">Maintain a neutral, evidence-driven perspective; avoid sensationalism.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                        <div class="bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-lg">
+                            <h3 class="font-bold text-emerald-800 mb-1 flex items-center"><i class="fa-solid fa-circle-check mr-1.5"></i> Encouraged Best Practices</h3>
+                            <ul class="list-disc pl-4 space-y-1 text-emerald-950">
+                                <li>Paraphrase sources accurately while citing the original study.</li>
+                                <li>Use past tense when describing methods or past trial results.</li>
+                                <li>Use present tense when discussing established medical truths or general facts.</li>
+                            </ul>
+                        </div>
+                        <div class="bg-rose-50/80 border border-rose-200 p-3.5 rounded-lg">
+                            <h3 class="font-bold text-rose-800 mb-1 flex items-center"><i class="fa-solid fa-circle-xmark mr-1.5"></i> Strict Avoidance Rules</h3>
+                            <ul class="list-disc pl-4 space-y-1 text-rose-950">
+                                <li>Direct block quotes (unless examining historical or legal verbatim text).</li>
+                                <li>Emotional modifiers, exaggeration, and dramatic flair.</li>
+                                <li>First-person personal opinions ("I feel that...", "In my opinion...").</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 4: Grammar & Punctuation -->
+                <section id="section-4" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">4</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Grammar and Punctuation</h2>
+                            <p class="text-xs text-slate-500">Oxford Comma, Period Rules, Colons, & Hyphenation</p>
+                        </div>
+                    </div>
+
+                    <!-- Oxford Comma Callout -->
+                    <div class="bg-amber-50/80 border-2 border-lynchburg-gold rounded-xl p-5 mb-6 shadow-2xs">
+                        <h3 class="text-sm font-bold text-lynchburg-800 flex items-center mb-2">
+                            <i class="fa-solid fa-pen-nib mr-2 text-lynchburg-gold"></i> Mandatory Oxford (Serial) Comma Standard
+                        </h3>
+                        <p class="text-xs text-slate-700 mb-3">
+                            The DMSc program enforces the mandatory use of the <strong>Oxford (serial) comma</strong> preceding the final conjunction in any series of 3 or more items to prevent clinical ambiguity.
+                        </p>
+                        <div class="grid sm:grid-cols-2 gap-3 text-xs">
+                            <div class="bg-white p-3 rounded-lg border border-rose-200 shadow-2xs">
+                                <span class="font-bold text-rose-600 block mb-1">✕ Incorrect (Ambiguous):</span>
+                                <code class="text-slate-800">The PA evaluated heart rate, oxygen saturation and blood pressure.</code>
+                            </div>
+                            <div class="bg-white p-3 rounded-lg border border-emerald-200 shadow-2xs">
+                                <span class="font-bold text-emerald-600 block mb-1">✓ Correct (DMSc Program Standard):</span>
+                                <code class="text-slate-800">The PA evaluated heart rate, oxygen saturation, and blood pressure.</code>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                        <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-lynchburg-800 mb-1"><i class="fa-solid fa-ellipsis text-lynchburg-gold mr-1"></i> Periods in Abbreviations</h4>
+                            <p class="text-slate-600">
+                                AMA style omits periods in most abbreviations and acronyms (e.g., write <code>CDC</code>, <code>NIH</code>, <code>USA</code>, <code>VA</code>, not <code>C.D.C.</code> or <code>V.A.</code>).
+                            </p>
+                        </div>
+                        <div class="p-3.5 bg-slate-50 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-lynchburg-800 mb-1"><i class="fa-solid fa-heading text-lynchburg-gold mr-1"></i> Colons in Section Headings</h4>
+                            <p class="text-slate-600">
+                                Do not end section headings or standalone subheadings with a colon unless followed directly by text on the same line.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 5: Capitalization & Italics -->
+                <section id="section-5" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">5</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Capitalization & Italics Rules</h2>
+                            <p class="text-xs text-slate-500">Titles, Professional Titles, Drug Names, & Organisms</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+                                <h3 class="font-bold text-lynchburg-800 text-sm mb-2"><i class="fa-solid fa-pills text-lynchburg-gold mr-1"></i> Drug & Medication Names</h3>
+                                <p class="text-slate-700 mb-2">
+                                    <strong>Generic names:</strong> Lowercase (e.g., <em>metformin, acetaminophen, lisinopril</em>).
+                                </p>
+                                <p class="text-slate-700">
+                                    <strong>Proprietary/Trade names:</strong> Capitalized (e.g., <em>Glucophage, Tylenol, Zestril</em>).
+                                </p>
+                            </div>
+
+                            <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+                                <h3 class="font-bold text-lynchburg-800 text-sm mb-2"><i class="fa-solid fa-microscope text-lynchburg-gold mr-1"></i> Organism & Genus Species</h3>
+                                <p class="text-slate-700 mb-2">
+                                    Italics required for binomial species names (e.g., <em>Staphylococcus aureus</em>, <em>Escherichia coli</em>).
+                                </p>
+                                <p class="text-slate-700">
+                                    Capitalize genus; lowercase species. Abbreviate after first full mention (e.g., <em>S. aureus</em>).
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-lg p-4 bg-white">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1">Physician Assistant / Associate Capitalization</h3>
+                            <p class="text-slate-600">
+                                Capitalize <em>Physician Assistant</em> or <em>Physician Associate</em> only when referring to a formal program name or proper title (e.g., <em>"University of Lynchburg DMSc Program"</em>). Use lowercase for general occupational references (e.g., <em>"The primary care physician assistant conducted the intake"</em>).
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 6: Preferred Word Choice -->
+                <section id="section-6" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">6</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Preferred Usage & Academic Substitutions</h2>
+                            <p class="text-xs text-slate-500">Replacing Colloquialisms & Precise Clinical Distinction</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-sm font-bold text-lynchburg-800 mb-3">Academic Term Replacement Table</h3>
+                    <div class="overflow-x-auto mb-6">
+                        <table class="w-full text-left border-collapse border border-slate-200 rounded-lg text-xs" aria-label="Academic Word Substitutions Table">
+                            <thead>
+                                <tr class="bg-lynchburg-800 text-white uppercase tracking-wider">
+                                    <th scope="col" class="p-3 border border-slate-300">Informal Phrase</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Academic Replacement</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Clinical Context Example</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-semibold text-rose-700 bg-slate-50/50">To bring to light</th>
+                                    <td class="p-3 border border-slate-200 font-bold text-emerald-800">Shed light on, elucidate, reveal</td>
+                                    <td class="p-3 border border-slate-200 italic">This study helps elucidate the socioeconomic barriers...</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-semibold text-rose-700 bg-slate-50/50">A lot of / tons of</th>
+                                    <td class="p-3 border border-slate-200 font-bold text-emerald-800">Numerous, substantial, significant</td>
+                                    <td class="p-3 border border-slate-200 italic">The trial yielded a substantial volume of patient data.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-semibold text-rose-700 bg-slate-50/50">Level up</th>
+                                    <td class="p-3 border border-slate-200 font-bold text-emerald-800">Enhance, advance, improve</td>
+                                    <td class="p-3 border border-slate-200 italic">Interventions aim to enhance functional mobility.</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-semibold text-rose-700 bg-slate-50/50">Bug going around</th>
+                                    <td class="p-3 border border-slate-200 font-bold text-emerald-800">Pathogen, viral outbreak, infection</td>
+                                    <td class="p-3 border border-slate-200 italic">The viral pathogen spread throughout the regional facility.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-lynchburg-800 mb-1">Doctor vs. Physician Distinction</h4>
+                            <p class="text-slate-600 mb-2">
+                                <strong>Doctor:</strong> Refers broadly to anyone holding a doctoral degree (DMSc, PhD, EdD, MD, DHSc).
+                            </p>
+                            <p class="text-slate-600">
+                                <strong>Physician:</strong> Reserved specifically for licensed Doctors of Medicine (MD) or Osteopathic Medicine (DO).
+                            </p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-lynchburg-800 mb-1">Patient vs. Subject Terminology</h4>
+                            <p class="text-slate-600">
+                                Use <em>patient</em> when describing individuals undergoing clinical care. Use <em>participant</em> or <em>subject</em> in trial methodology research contexts.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 7: Abbreviations & Acronyms -->
+                <section id="section-7" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">7</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Abbreviations & Acronyms (AMA Ch. 13.0)</h2>
+                            <p class="text-xs text-slate-500">First-Use Rules, Clinical Terms, & Units of Measure</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="bg-blue-50 border-l-4 border-lynchburg-800 p-4 rounded-r-lg">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1">First-Use Expansion Rule</h3>
+                            <p class="text-slate-700">
+                                Define abbreviations at their first appearance in the manuscript text by writing out the full term followed by the acronym in parentheses. Example: <em>Doctor of Medical Science (DMSc)</em> or <em>World Health Organization (WHO)</em>.
+                            </p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-3">
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-lynchburg-800 block mb-1">Standard Medical Acronyms (No expansion needed):</span>
+                                <p class="text-slate-600 font-mono">DNA, RNA, HIV, AIDS, CT, MRI, ECG, ICU, IV, IM</p>
+                            </div>
+                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                                <span class="font-bold text-lynchburg-800 block mb-1">Do Not Begin Sentences with Abbreviations:</span>
+                                <p class="text-slate-600">Spell out the full word or restructure the sentence if an acronym starts a line.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 8: Numbers & Units -->
+                <section id="section-8" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">8</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Numbers & Units of Measure (AMA Ch. 18.0)</h2>
+                            <p class="text-xs text-slate-500">Numeral Rules, SI Units, Percentages, & P-Values</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="grid sm:grid-cols-3 gap-3">
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                <span class="font-bold text-lynchburg-800 block mb-1">Use Numerals for Numbers 10+</span>
+                                <p class="text-slate-600">Write <em>12 patients</em>, <em>45 trials</em>, <em>100 participants</em>.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                <span class="font-bold text-lynchburg-800 block mb-1">Spell Out Numbers Below 10</span>
+                                <p class="text-slate-600">Write <em>three clinicians</em>, <em>six visits</em>, <em>nine subjects</em>.</p>
+                            </div>
+                            <div class="bg-slate-50 p-3 rounded-lg border border-slate-200">
+                                <span class="font-bold text-lynchburg-800 block mb-1">Always Use Numerals with Units</span>
+                                <p class="text-slate-600">Write <em>5 mg</em>, <em>3 mL</em>, <em>2 years old</em>, <em>4%</em>.</p>
+                            </div>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1">Statistical Reporting Guidelines</h3>
+                            <p class="text-slate-600 mb-2">Italicize statistical symbols (<em>P</em>, <em>N</em>, <em>r</em>, <em>t</em>, <em>F</em>):</p>
+                            <code class="bg-white p-2 rounded border border-slate-300 font-mono text-slate-800 block">
+                                Outcomes differed significantly between treatment cohorts (P = .02; N = 142).
+                            </code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 9: References & Citations -->
+                <section id="section-9" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">9</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">References & Citations (AMA Ch. 3.0)</h2>
+                            <p class="text-xs text-slate-500">In-Text Superscripts, Order, & Digital Object Identifiers (DOI)</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="bg-blue-50 border-l-4 border-lynchburg-800 p-4 rounded-r-lg">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1">In-Text Superscript Rules</h3>
+                            <ul class="list-disc pl-4 space-y-1 text-slate-700">
+                                <li>Use Arabic superscript numerals consecutively (e.g., <sup>1</sup>, <sup>2-4</sup>, <sup>1,3,5</sup>).</li>
+                                <li>Place superscripts <strong>outside</strong> periods and commas.</li>
+                                <li>Place superscripts <strong>inside</strong> colons and semicolons.</li>
+                                <li>Do not insert spaces before superscript numbers.</li>
+                            </ul>
+                        </div>
+
+                        <!-- DOI Formatting standard -->
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1">Digital Object Identifier (DOI) Standard</h3>
+                            <p class="text-slate-600 mb-2">Format DOIs cleanly without URL prefixes or trailing periods:</p>
+                            <code class="bg-white px-3 py-1.5 rounded border border-slate-300 font-mono text-slate-800 block w-max max-w-full overflow-x-auto">
+                                doi:10.1080/08959420.2011.605642
+                            </code>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 10: Ethical & Legal Standards -->
+                <section id="section-10" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">10</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Ethical and Legal Standards (AMA Ch. 5.0)</h2>
+                            <p class="text-xs text-slate-500">IRB Approvals, HIPAA Privacy, & Academic Integrity</p>
+                        </div>
+                    </div>
+
+                    <div class="grid sm:grid-cols-2 gap-4 text-xs">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1"><i class="fa-solid fa-shield-halved text-lynchburg-gold mr-1"></i> IRB & Human Subjects Protection</h3>
+                            <p class="text-slate-600">
+                                All research involving human subjects must state Institutional Review Board (IRB) approval or exemption in the methods section of the manuscript.
+                            </p>
+                        </div>
+
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h3 class="font-bold text-lynchburg-800 text-sm mb-1"><i class="fa-solid fa-user-shield text-lynchburg-gold mr-1"></i> HIPAA & Patient Anonymity</h3>
+                            <p class="text-slate-600">
+                                Omit all identifying patient information (names, initials, hospital record numbers, exact admission dates) from manuscript figures and case reports.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 11: Inclusive Language Standards -->
+                <section id="section-11" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">11</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Inclusive & Professional Language Standards</h2>
+                            <p class="text-xs text-slate-500">Person-First Language, Age Terminology, & Race Standards</p>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse border border-slate-200 rounded-lg text-xs" aria-label="Inclusive Language Standards Table">
+                            <thead>
+                                <tr class="bg-lynchburg-800 text-white uppercase tracking-wider">
+                                    <th scope="col" class="p-3 border border-slate-300">Category</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Appropriate Medical Terminology</th>
+                                    <th scope="col" class="p-3 border border-slate-300">Outdated / Unacceptable Terms</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-slate-200 bg-white">
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Age</th>
+                                    <td class="p-3 border border-slate-200 font-medium text-emerald-800">Older adults, individuals 65 years and older</td>
+                                    <td class="p-3 border border-slate-200 text-rose-700">Seniors, the elderly, senile</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Disability</th>
+                                    <td class="p-3 border border-slate-200 font-medium text-emerald-800">Person with paraplegia, patient with diabetes</td>
+                                    <td class="p-3 border border-slate-200 text-rose-700">Diabetic, wheelchair-bound, stroke victim</td>
+                                </tr>
+                                <tr class="hover:bg-slate-50">
+                                    <th scope="row" class="p-3 font-bold text-lynchburg-800 bg-slate-50/50">Race & Ethnicity</th>
+                                    <td class="p-3 border border-slate-200 font-medium text-emerald-800">Black patient, White individual, Asian American</td>
+                                    <td class="p-3 border border-slate-200 text-rose-700">Minorities, non-White, Caucasian</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- SECTION 12: Reference Examples -->
+                <section id="section-12" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">12</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">AMA Reference Examples & Templates</h2>
+                            <p class="text-xs text-slate-500">Journals, Books, Online Resources, & Guidelines</p>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 text-xs">
+                        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-lynchburg-800 uppercase tracking-wide">Journal Article (Print)</span>
+                            </div>
+                            <code class="block bg-white p-2 rounded border border-slate-300 font-mono text-slate-800 mb-2">
+                                Author(s). Article title. <em>Abbrev Journal Name</em>. Year;Vol(Issue):Pages.
+                            </code>
+                            <p class="text-slate-600 italic">Example: Smith T, Jones J. Type 1 diabetes management in youth. <em>N Engl J Med</em>. 2024;390(2):144-152.</p>
+                        </div>
+
+                        <div class="border border-slate-200 rounded-lg p-4 bg-slate-50">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="font-bold text-lynchburg-800 uppercase tracking-wide">Journal Article with DOI (Online)</span>
+                            </div>
+                            <code class="block bg-white p-2 rounded border border-slate-300 font-mono text-slate-800 mb-2">
+                                Author(s). Article title. <em>Abbrev Journal Name</em>. Year;Vol(Issue):Pages. doi:10.xxxx/xxxxx
+                            </code>
+                            <p class="text-slate-600 italic">Example: Hunter RH, Sykes K. Environmental support for healthy aging. <em>J Aging Soc Policy</em>. 2023;35(4):354-371. doi:10.1080/08959420.2023.605642</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- SECTION 13: Appendices & Submission Checklist -->
+                <section id="section-13" class="manual-section bg-white rounded-xl shadow-sm border border-slate-200 p-6 sm:p-8">
+                    <div class="flex items-center space-x-3 pb-4 mb-4 border-b border-slate-100">
+                        <span class="w-9 h-9 rounded-xl bg-lynchburg-800 text-lynchburg-gold flex items-center justify-center font-bold text-base shadow-sm">13</span>
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold text-lynchburg-800">Appendices & Pre-Submission Checklist</h2>
+                            <p class="text-xs text-slate-500">Interactive Student Verification Tool</p>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Pre-Submission Checklist -->
+                    <div class="bg-lynchburg-50 p-5 rounded-xl border border-lynchburg-800/20">
+                        <div class="flex items-center justify-between mb-3">
+                            <h3 class="text-sm font-bold text-lynchburg-800 flex items-center">
+                                <i class="fa-solid fa-list-check text-lynchburg-gold mr-2"></i> Student Assignment Self-Audit Checklist
+                            </h3>
+                            <span id="checklist-progress" class="text-xs bg-white text-lynchburg-800 font-bold px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs">0 / 5 Completed</span>
+                        </div>
+                        <div class="space-y-2.5 text-xs text-slate-700">
+                            <label class="flex items-start space-x-3 p-2 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                                <input type="checkbox" onchange="updateChecklistProgress()" class="checklist-item mt-0.5 text-lynchburg-800 rounded focus:ring-lynchburg-gold">
+                                <span><strong>Formatting:</strong> Arial/Times New Roman 12pt font, 1-inch margins, double-spaced throughout.</span>
+                            </label>
+                            <label class="flex items-start space-x-3 p-2 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                                <input type="checkbox" onchange="updateChecklistProgress()" class="checklist-item mt-0.5 text-lynchburg-800 rounded focus:ring-lynchburg-gold">
+                                <span><strong>Oxford Comma:</strong> Verified serial commas preceding conjunctions in all lists of 3+ items.</span>
+                            </label>
+                            <label class="flex items-start space-x-3 p-2 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                                <input type="checkbox" onchange="updateChecklistProgress()" class="checklist-item mt-0.5 text-lynchburg-800 rounded focus:ring-lynchburg-gold">
+                                <span><strong>AI Disclosure:</strong> Mandatory AI usage statement included in Acknowledgments section.</span>
+                            </label>
+                            <label class="flex items-start space-x-3 p-2 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                                <input type="checkbox" onchange="updateChecklistProgress()" class="checklist-item mt-0.5 text-lynchburg-800 rounded focus:ring-lynchburg-gold">
+                                <span><strong>In-Text Superscripts:</strong> Consecutively numbered superscript citations placed outside periods/commas.</span>
+                            </label>
+                            <label class="flex items-start space-x-3 p-2 bg-white rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50 transition">
+                                <input type="checkbox" onchange="updateChecklistProgress()" class="checklist-item mt-0.5 text-lynchburg-800 rounded focus:ring-lynchburg-gold">
+                                <span><strong>DOI Format:</strong> DOIs formatted as <code>doi:10.xxxx/xxxxx</code> without trailing periods.</span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <footer class="bg-slate-900 text-slate-400 border-t border-slate-800 py-6 px-4 no-print text-center text-xs mt-12">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-graduation-cap text-lynchburg-gold"></i>
+                <span class="text-slate-200 font-semibold">University of Lynchburg DMSc Program</span>
+            </div>
+            <p>© 2026 University of Lynchburg. Hosted via GitHub Pages.</p>
+        </div>
+    </footer>
+
+    <!-- Quick AMA Helper Modal -->
+    <div id="cheat-sheet-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full p-6 border border-slate-200">
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+                <h3 class="text-base font-bold text-lynchburg-800 flex items-center"><i class="fa-solid fa-bolt text-lynchburg-gold mr-2"></i>AMA Reference Quick Helper</h3>
+                <button onclick="toggleQuickCheatSheet()" class="text-slate-400 hover:text-slate-700 p-1" aria-label="Close helper modal">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+            <div class="space-y-3 text-xs text-slate-700">
+                <p class="font-medium">Core rules for DMSc Reference List entries:</p>
+                <ul class="list-disc pl-4 space-y-1.5">
+                    <li>Single-space within entries; double-space between entries.</li>
+                    <li><strong>Do NOT</strong> use hanging indents (AMA uses flush-left numbered entries).</li>
+                    <li>List references in order of in-text numerical appearance.</li>
+                    <li>Omit URLs if a valid Digital Object Identifier (DOI) is provided.</li>
+                </ul>
+            </div>
+            <div class="mt-5 text-right">
+                <button onclick="toggleQuickCheatSheet()" class="bg-lynchburg-800 text-white font-semibold px-4 py-2 rounded-lg text-xs hover:bg-lynchburg-900 transition">Close Helper</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Real-Time Search Engine Filter
+        function filterManualContent() {
+            const query = document.getElementById('manual-search').value.toLowerCase().trim();
+            const sections = document.querySelectorAll('.manual-section');
+            const summaryBox = document.getElementById('search-results-summary');
+            const summaryText = document.getElementById('search-count-text');
+            const clearBtn = document.getElementById('clear-search');
+            let matchCount = 0;
+
+            if (query === '') {
+                clearSearch();
+                return;
+            }
+
+            clearBtn.classList.remove('hidden');
+
+            sections.forEach(section => {
+                const text = section.textContent.toLowerCase();
+                if (text.includes(query)) {
+                    section.classList.remove('hidden');
+                    matchCount++;
+                } else {
+                    section.classList.add('hidden');
+                }
+            });
+
+            summaryBox.classList.remove('hidden');
+            summaryText.textContent = `Found ${matchCount} section(s) matching "${query}"`;
+        }
+
+        function clearSearch() {
+            document.getElementById('manual-search').value = '';
+            document.getElementById('clear-search').classList.add('hidden');
+            document.getElementById('search-results-summary').classList.add('hidden');
+            const sections = document.querySelectorAll('.manual-section');
+            sections.forEach(section => section.classList.remove('hidden'));
+        }
+
+        // Copy to Clipboard Fallback Helper
+        function copyToClipboard(elementId, buttonElement) {
+            const textToCopy = document.getElementById(elementId).innerText;
+            const textarea = document.createElement('textarea');
+            textarea.value = textToCopy;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            
+            try {
+                document.execCommand('copy');
+                const originalText = buttonElement.innerHTML;
+                buttonElement.innerHTML = '<i class="fa-solid fa-check text-emerald-400"></i> Copied!';
+                setTimeout(() => {
+                    buttonElement.innerHTML = originalText;
+                }, 2000);
+            } catch (err) {
+                console.error('Failed to copy text:', err);
+            } finally {
+                document.body.removeChild(textarea);
+            }
+        }
+
+        // Interactive Submission Checklist Tracker
+        function updateChecklistProgress() {
+            const total = document.querySelectorAll('.checklist-item').length;
+            const checked = document.querySelectorAll('.checklist-item:checked').length;
+            const counter = document.getElementById('checklist-progress');
+            counter.textContent = `${checked} / ${total} Completed`;
+            
+            if (checked === total) {
+                counter.className = 'text-xs bg-emerald-600 text-white font-bold px-2.5 py-1 rounded-full shadow-2xs transition';
+            } else {
+                counter.className = 'text-xs bg-white text-lynchburg-800 font-bold px-2.5 py-1 rounded-full border border-slate-200 shadow-2xs transition';
+            }
+        }
+
+        // Quick Modal Toggle
+        function toggleQuickCheatSheet() {
+            const modal = document.getElementById('cheat-sheet-modal');
+            modal.classList.toggle('hidden');
+        }
+
+        // Mobile Menu Sidebar Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const sidebar = document.getElementById('sidebar-nav');
+            sidebar.classList.toggle('hidden');
+        });
+
+        // Intersection Observer for Active Table of Contents Link
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '-10% 0px -70% 0px',
+                threshold: 0
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        document.querySelectorAll('.toc-link').forEach(link => {
+                            link.classList.remove('toc-active');
+                            if (link.getAttribute('href') === `#${id}`) {
+                                link.classList.add('toc-active');
+                            }
+                        });
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.manual-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
